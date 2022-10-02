@@ -1,0 +1,30 @@
+---
+title: "Create a palette from an image using clustering"
+format: html
+editor: visual
+---
+
+The idea here is to use K-means clustering to identify centroids in RGB space based on an image.  By selecting different numbers of clusters, you can create palettes of different size.
+
+This was (very roughly) inspired by the [wesanderson](https://github.com/karthik/wesanderson) and [calecopal](https://github.com/an-bui/calecopal) packages, and also cool image manipulation examples like https://www.r-bloggers.com/2022/10/probabilistic-photograph-manipulation-with-ggplot2-and-imager. 
+
+Once the base code is up and running, perhaps turn it into a Shiny app where users can load their own image and set up their own palettes.
+
+```{r setup}
+library(imager)
+library(tidyverse)
+```
+
+The first step is to load in an image, and convert it to a dataframe of `x`, `y`, `r`, `g`, `b`.
+
+Note: for a Shiny app, might be nice to have an option to downsample a really large image.
+
+```{r}
+img <- load.image("20221112_DSC_0068_TP.JPG") # load image in
+dims <- dim(img)[1:2] # get dimensions for exporting
+# change to data frame
+img_dat <- img %>% 
+  as.data.frame(wide = "c") %>% 
+  mutate(hex = rgb(c.1, c.2, c.3), xy = paste(x, y, sep = "_"))
+
+```
