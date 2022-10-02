@@ -121,7 +121,7 @@ Could use `imsub` to get a rectangular selection, or `Xc`/`Yc`.  Let's try `imsu
 
 ### Crop the photo
 
-Crop the photo, using the non-equalized version.
+Crop the photo, using the non-equalized version.  For a Shiny app, would be cool to include an interactive selection tool to create a crop box.
 
 ```{r}
 x_keep <- c(40, 193)
