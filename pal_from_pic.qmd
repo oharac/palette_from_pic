@@ -190,3 +190,5 @@ For Shiny App: generate a copy/pasteable list of hexadecimal values.
 Plotly 3-d plot with R, G, B axes, sample ~ 1000 points, plot by cluster color (or true color), with the cluster center highlighted.
 
 Plot the original image, but using ONLY the palette colors - transform each pixel into the color related to its cluster.
+
+Include an option for checking for colorblind-safe?
