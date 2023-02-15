@@ -70,7 +70,7 @@ plot(img_eq, main = 'Resized and equalized image', axes = FALSE)
 
 ### Generate clusters
 
-Convert the image to a dataframe with RGB values.  Let's use the equalized image for more vibrancy.
+Convert the image to a dataframe with RGB values. Let's use the equalized image for more vibrancy.
 
 ```{r}
 img_to_df <- function(img) {
@@ -95,9 +95,9 @@ ggplot(img_df, aes(x = x, y = -y, fill = hex)) +
 
 ```
 
-Then run K-means clustering on the result.  Grab the resulting centers, coerce to dataframe, mutate into hex codes, and return those hex codes as the resulting palette.
+Then run K-means clustering on the result. Grab the resulting centers, coerce to dataframe, mutate into hex codes, and return those hex codes as the resulting palette.
 
-``` {r}
+```{r}
 colors_df <- img_df %>%
   select(r, g, b)
 
@@ -113,15 +113,15 @@ scales::show_col(pal)
 
 ```
 
-There is a lot of brown and blue here.  What if we crop the image to the upper right corner?
+There is a lot of brown and blue here. What if we crop the image to the upper right corner?
 
 ## Crop and try again
 
-Could use `imsub` to get a rectangular selection, or `Xc`/`Yc`.  Let's try `imsub`, recalling that our dimensions (for the low-res image) are 193 x 294 pixels. 
+Could use `imsub` to get a rectangular selection, or `Xc`/`Yc`. Let's try `imsub`, recalling that our dimensions (for the low-res image) are 193 x 294 pixels.
 
 ### Crop the photo
 
-Crop the photo, using the non-equalized version.  For a Shiny app, would be cool to include an interactive selection tool to create a crop box.
+Crop the photo, using the non-equalized version. For a Shiny app, would be cool to include an interactive selection tool to create a crop box.
 
 ```{r}
 x_keep <- c(40, 193)
@@ -146,7 +146,8 @@ plot(img_crop_eq)
 The unequalized cropped image seems more vibrant, actually... but let's see what kind of palettes k-means clustering gives us for each!
 
 First, for the cropped original image:
-``` {r}
+
+```{r}
 img_df <- img_to_df(img_crop)
 
 colors_df <- img_df %>%
@@ -165,7 +166,8 @@ scales::show_col(pal)
 ```
 
 Then for the cropped equalized image:
-``` {r}
+
+```{r}
 img_df <- img_to_df(img_crop_eq)
 
 colors_df <- img_df %>%
