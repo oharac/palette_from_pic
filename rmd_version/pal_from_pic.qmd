@@ -15,7 +15,7 @@ The idea here is to use K-means clustering to identify centroids in RGB space ba
 
 This was (very roughly) inspired by the [wesanderson](https://github.com/karthik/wesanderson) and [calecopal](https://github.com/an-bui/calecopal) packages, and also cool image manipulation examples like https://www.r-bloggers.com/2022/10/probabilistic-photograph-manipulation-with-ggplot2-and-imager.
 
-Once the base code is up and running, perhaps turn it into a Shiny app where users can load their own image and set up their own palettes.
+Once the base code is up and running, perhaps turn it into a Shiny app where users can load their own image and generate their own palettes.
 
 ```{r setup}
 library(imager)
@@ -28,7 +28,7 @@ library(here)
 
 ### Load image
 
-The first step is to load in an image, and convert it to a dataframe of `x`, `y`, `r`, `g`, `b`.
+The first step is to load in an image and offer some pre-processing.  Consider a Shiny widget to browse for images on local computer, or enter a URL for a web image.
 
 ```{r}
 img_f <- here('img/waffle_douglas.jpg')
@@ -184,3 +184,13 @@ pal <- colors_k$centers %>%
 scales::show_col(pal)
 
 ```
+
+## Output options
+
+For Shiny App: generate a copy/pasteable list of hexadecimal values.
+
+Plotly 3-d plot with R, G, B axes, sample ~ 1000 points, plot by cluster color (or true color), with the cluster center highlighted.
+
+Plot the original image, but using ONLY the palette colors - transform each pixel into the color related to its cluster.
+
+Include an option for checking for colorblind-safe?
