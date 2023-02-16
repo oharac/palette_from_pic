@@ -13,7 +13,7 @@ execute:
 
 The idea here is to use K-means clustering to identify centroids in RGB space based on an image. By selecting different numbers of clusters, you can create palettes of different size.
 
-This was (very roughly) inspired by the [wesanderson](https://github.com/karthik/wesanderson) and [calecopal](https://github.com/an-bui/calecopal) packages, and also cool image manipulation examples like https://www.r-bloggers.com/2022/10/probabilistic-photograph-manipulation-with-ggplot2-and-imager.  Here is a blog post discussing other R packages that do similar stuff: https://towardsdatascience.com/generating-color-palettes-in-r-64394117a662.
+This was (very roughly) inspired by the [wesanderson](https://github.com/karthik/wesanderson) and [calecopal](https://github.com/an-bui/calecopal) packages, and also cool image manipulation examples like https://www.r-bloggers.com/2022/10/probabilistic-photograph-manipulation-with-ggplot2-and-imager. Here is a blog post discussing other R packages that do similar stuff: https://towardsdatascience.com/generating-color-palettes-in-r-64394117a662.
 
 Once the base code is up and running, perhaps turn it into a Shiny app where users can load their own image and generate their own palettes.
 
@@ -28,7 +28,7 @@ library(here)
 
 ### Load image
 
-The first step is to load in an image and offer some pre-processing.  Consider a Shiny widget to browse for images on local computer, or enter a URL for a web image.
+The first step is to load in an image and offer some pre-processing. Consider a Shiny widget to browse for images on local computer, or enter a URL for a web image.
 
 ```{r}
 img_f <- here('img/waffle_douglas.jpg')
@@ -189,7 +189,7 @@ scales::show_col(pal)
 
 For Shiny App: generate a copy/pasteable list of hexadecimal values.
 
-Plotly 3-d plot with R, G, B axes, sample ~ 1000 points, plot by cluster color (or true color), with the cluster center highlighted.
+Plotly 3-d plot with R, G, B axes, sample \~ 1000 points, plot by cluster color (or true color), with the cluster center highlighted.
 
 Plot the original image, but using ONLY the palette colors - transform each pixel into the color related to its cluster.
 

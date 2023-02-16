@@ -2,13 +2,13 @@ library(shiny)
 
 ui <- fluidPage(
   navbarPage(
-    "Palette from Pic",
+    'Palette from Pic',
     
     tabPanel(
-      "Load image",
+      'Load image',
       sidebarLayout(
         sidebarPanel(
-          # fileInput("pic_file", label = h3("Upload a photo")),
+          fileInput('pic_file', label = h3('Upload a photo')),
           numericInput(
             inputId = 'max_pic_dim',
             label = 'Rescale to maximum pic dimension:',
@@ -31,28 +31,79 @@ ui <- fluidPage(
             selected = character(0))
         ), ### end side panel
 
-        # Show a plot of the generated distribution
+        # Plot the raw/rescaled pic in the main panel
         mainPanel(
-          textOutput("pic_dim_print"),
-          plotOutput("tab1_plot")
+          plotOutput('load_pic_plot', height = '600px'),
+          textOutput('pic_dim_print')
         ) ### end main panel
       ) ### end sidebar layout
-    ), ### end tab panel
+    ), ### end Load Image tab panel
     
     tabPanel(
-      "Adjust image",
+      'Adjust image',
       sidebarLayout(
         sidebarPanel(
-          'test'
+          checkboxInput(
+            inputId = 'equalize',
+            label = 'Equalize RGB histograms?',
+            value = FALSE
+          ),
+          sliderInput(
+            inputId = 'saturation',
+            label = 'Adjust saturation %',
+            min = -100, max = 100, value = 0
+          ),
+          h3('From previous tab:'),
+          plotOutput('load_pic_thumb', height = '250px')
+        ), ### end side panel
+
+        # Plot the adjusted pic in the main panel
+        mainPanel(
+          plotOutput('adj_pic_plot', height = '600px')
+        ) ### end main panel
+      ) ### end sidebar layout
+    ), ### end Adjust image tab panel
+    
+    tabPanel(
+      'Generate palette',
+      sidebarLayout(
+        sidebarPanel(
+          sliderInput(
+            inputId = 'n_cols',
+            label = 'How many colors?',
+            min = 2, max = 15, value = 9
+          ),
+          h3('From previous tab:'),
+          plotOutput('adj_pic_thumb', height = '250px')
+        ), ### end side panel
+
+        # Show a plot of the generated distribution
+        mainPanel(
+          plotOutput('palette_plot', height = '600px')
+        ) ### end main panel
+      ) ### end sidebar layout
+    ), ### end generate palette tab panel
+    
+    tabPanel(
+      'Finalize palette',
+      sidebarLayout(
+        sidebarPanel(
+          uiOutput('pal_picker'),
+          h3('From previous tab:'),
+          plotOutput('palette_thumb', height = '250px')
         ), ### end side panel
         
         # Show a plot of the generated distribution
         mainPanel(
-          plotOutput("tab2_plot")
+          h3('Copy this to paste your palette into R:'),
+          verbatimTextOutput('palette_text'),
+          plotOutput('palette_final', height = '600px')
         ) ### end main panel
       ) ### end sidebar layout
-    ) ### end tab panel show palette
+    ) ### end Select palette tab panel
+    
   ) ### end navbar page
+  
 )### end fluidpage
 
 
