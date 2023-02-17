@@ -100,8 +100,21 @@ ui <- fluidPage(
           plotOutput('palette_final', height = '600px')
         ) ### end main panel
       ) ### end sidebar layout
-    ) ### end Select palette tab panel
+    ), ### end Select palette tab panel
     
+    tabPanel(
+      'extra tab',
+      sidebarLayout(
+        sidebarPanel(
+          'Hey this is a new panel'
+        ), ### end side panel
+        
+        # Show a plot of the generated distribution
+        mainPanel(
+          'A new main panel!'
+        ) ### end main panel
+      )
+    )
   ) ### end navbar page
   
 )### end fluidpage
