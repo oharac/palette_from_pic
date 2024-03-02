@@ -1,6 +1,5 @@
 library(shiny)
 library(imager)
-# library(factoextra)
 library(tidyverse)
 
 message('reading file')
